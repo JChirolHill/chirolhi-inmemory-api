@@ -2,12 +2,15 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 
+const { ENVIRONMENT, PORT } = process.env;
+const IS_DEVELOPMENT = ENVIRONMENT === 'development';
+
 // middleware
 // allows us to receive and send json
 app.use(express.json());
 // let any domain make a request to this api
 app.use(cors({
-  origin: 'http://localhost:3000'
+  origin: IS_DEVELOPMENT ? 'http://localhost:3000' : 'https://furtive-wall.surge.sh/'
 }));
 // to restrict to only request from google.com:
 // to test use fetch('http://localhost:8000/api/posts') in the browser console

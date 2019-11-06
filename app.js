@@ -85,4 +85,7 @@ app.put('/api/posts/:id', (request, response) => {
   }
 });
 
-app.listen(8000);
+// so that when heroku runs, it passes in the port number
+// process is global var for node, like window is for browser
+// else, for local use will go to 8000
+app.listen(process.env.PORT || 8000);
